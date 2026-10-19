@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moto Racer 3D</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="top">
+      <div class="stat">PONTOS<b id="score">0</b></div>
+      <div class="stage">
+        <span id="stageName">FASE 1</span>
+        <div class="sbar"><div id="stageFill"></div></div>
+      </div>
+      <div class="stat">DISTÂNCIA<b><span id="dist">0</span> m</b></div>
+      <div class="stat">VIDAS<b id="lives" class="lives">♥♥♥</b></div>
+    </div>
+    <div id="banner"><small id="bannerNum"></small><b id="bannerName"></b></div>
+    <div id="toast"></div>
+    <div class="nitro">
+      <div class="bar"><div id="nitroFill"></div></div>
+      <span>NITRO (Shift)</span>
+    </div>
+    <div class="speedo"><span id="speed">0</span><small>km/h</small></div>
+  </div>
+
+  <div id="flash"></div>
+
+  <!-- Menu inicial -->
+  <div id="menu" class="panel">
+    <h1>MOTO <span>RACER</span> 3D</h1>
+    <p class="sub">6 fases com clima, 5 motos e muito trânsito pela frente!</p>
+    <div class="keys">
+      <div><kbd>W</kbd> / <kbd>↑</kbd> Acelerar</div>
+      <div><kbd>S</kbd> / <kbd>↓</kbd> Frear</div>
+      <div><kbd>A</kbd> <kbd>D</kbd> / <kbd>←</kbd> <kbd>→</kbd> Direção</div>
+      <div><kbd>Shift</kbd> Nitro</div>
+      <div><kbd>P</kbd> Pausar &nbsp; <kbd>M</kbd> Som</div>
+    </div>
+    <button id="startBtn">▶ JOGAR</button>
+    <h3>🏆 Ranking</h3>
+    <ol id="rankMenu" class="rank"></ol>
+  </div>
+
+  <!-- Garagem: escolha de moto, cor e fase -->
+  <div id="garage" class="hidden">
+    <div class="g-top">
+      <h2>GARAGEM</h2>
+      <button id="gBack" class="ghost">← Voltar</button>
+    </div>
+    <div class="g-bottom">
+      <div class="g-info">
+        <div class="g-pick">
+          <button id="gPrev" class="arrow" aria-label="Moto anterior">◀</button>
+          <div>
+            <h3 id="gName">Moto</h3>
+            <p id="gDesc"></p>
+          </div>
+          <button id="gNext" class="arrow" aria-label="Próxima moto">▶</button>
+        </div>
+        <div class="g-stats" id="gStats"></div>
+      </div>
+      <div class="g-opts">
+        <div class="g-row"><span>COR</span><div id="gColors" class="swatches"></div></div>
+        <div class="g-row">
+          <span>FASE</span>
+          <div class="stagepick">
+            <button id="sPrev" class="arrow" aria-label="Fase anterior">◀</button>
+            <div id="sName">Fase</div>
+            <button id="sNext" class="arrow" aria-label="Próxima fase">▶</button>
+          </div>
+        </div>
+        <p id="sHint" class="hint"></p>
+        <button id="goBtn">🏁 LARGAR</button>
+        <p class="hint">Teclado: ← → troca de moto · ↑ ↓ troca de fase · Enter larga</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fim de jogo -->
+  <div id="over" class="panel hidden">
+    <h2>FIM DE CORRIDA</h2>
+    <p class="final">Pontuação <b id="finalScore">0</b> · <span id="finalDist">0</span> m · <span id="finalStage"></span></p>
+    <div class="save">
+      <input id="nameInput" maxlength="12" placeholder="Seu nome" autocomplete="off">
+      <button id="saveBtn">Salvar</button>
+    </div>
+    <ol id="rankOver" class="rank"></ol>
+    <div class="btnrow">
+      <button id="retryBtn">↻ JOGAR DE NOVO</button>
+      <button id="garageBtn" class="ghost">🏍 GARAGEM</button>
+    </div>
+  </div>
+
+  <!-- Pausa -->
+  <div id="pause" class="panel hidden">
+    <h2>PAUSADO</h2>
+    <p class="sub">Pressione <kbd>P</kbd> para continuar</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
